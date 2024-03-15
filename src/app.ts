@@ -2,6 +2,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express, { Application, NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
+import routes from './app/routes';
 
 const app: Application = express();
 
@@ -12,7 +13,8 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// todo: application routes will be here
+// application routes
+app.use('/api/v1', routes);
 
 // todo: global error handler will be here
 
