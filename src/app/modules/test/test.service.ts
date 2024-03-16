@@ -1,7 +1,8 @@
 import { Test } from './test.model';
 
 const createTest = async (data: any) => {
-  const result = await Test.create(data);
+  const { title } = data;
+  const result = await Test.create({ title });
   return result;
 };
 

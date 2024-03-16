@@ -5,8 +5,7 @@ import sendResponse from '../../../shared/sendResponse';
 import { TestService } from './test.service';
 
 const createTest = catchAsync(async (req: Request, res: Response) => {
-  const { ...data } = req.body;
-  const result = await TestService.createTest(data);
+  const result = await TestService.createTest(req.body);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
