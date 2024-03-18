@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
 import { Schema, model } from 'mongoose';
-import { IUser } from './user.interface';
+import { IUser, UserModel } from './user.interface';
 
-const UserSchema = new Schema<IUser>(
+const UserSchema = new Schema<IUser, UserModel>(
   {
     username: {
       type: String,
@@ -37,9 +37,11 @@ UserSchema.methods.isPasswordCorrect = async function (
 };
 
 UserSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next();
+
   this.password = await bcrypt.hash(this.password, 10);
 
   next();
 });
 
-export const User = model<IUser>('User', UserSchema);
+export const User = model<IUser, UserModel>('User', UserSchema);
