@@ -13,6 +13,9 @@ const playerSchema = new Schema<IPlayer>(
       type: String,
       required: true,
     },
+    contactNo: {
+      type: String,
+    },
     age: {
       type: String,
     },

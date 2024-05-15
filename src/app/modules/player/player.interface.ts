@@ -1,5 +1,6 @@
 export type IPlayer = {
   name: string;
+  contactNo?: string;
   age?: number;
   image?: string;
   role: 'Batsman' | 'Bowler' | 'All-rounder';
@@ -25,4 +26,13 @@ export type IPlayer = {
   wickets: number;
   givenRuns: number;
   economy: number;
+};
+
+export type IPlayerFilters = {
+  searchTerm?: string;
+  role?: string;
+  battingStyle?: string;
+  bowlingArm?: string;
+  bowlingStyle?: string;
+  isWicketKeeper?: boolean;
 };
