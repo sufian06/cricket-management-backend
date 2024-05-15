@@ -3,10 +3,10 @@ export type IPlayer = {
   contactNo?: string;
   age?: number;
   image?: string;
-  role: 'Batsman' | 'Bowler' | 'All-rounder';
-  battingStyle: 'Right-handed' | 'Left-handed';
-  bowlingArm?: 'Right-arm' | 'Left-arm';
-  bowlingStyle?: 'Fast' | 'Medium' | 'Off-spin' | 'Leg-spin' | 'Chainaman';
+  role: 'batsman' | 'bowler' | 'all-rounder';
+  battingStyle: 'right-handed' | 'left-handed';
+  bowlingArm?: 'right-arm' | 'left-arm';
+  bowlingStyle?: 'fast' | 'medium' | 'off-spin' | 'leg-spin' | 'chainaman';
   isCaptain?: boolean;
   isWicketKeeper?: boolean;
   matches: number;

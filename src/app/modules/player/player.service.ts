@@ -1,4 +1,6 @@
+import httpStatus from 'http-status';
 import { SortOrder } from 'mongoose';
+import ApiError from '../../../errors/ApiError';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
@@ -66,7 +68,36 @@ const getAllPlayers = async (
   };
 };
 
+const getSinglePlayer = async (id: string): Promise<IPlayer | null> => {
+  const result = await Player.findOne({ _id: id });
+
+  return result;
+};
+
+const updatePlayer = async (
+  id: string,
+  payload: Partial<IPlayer>,
+): Promise<IPlayer | null> => {
+  const isPlayerExist = await Player.findOne({ _id: id });
+  if (!isPlayerExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Player not found');
+  }
+  const result = await Player.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+
+  return result;
+};
+
+const deletePlayer = async (id: string): Promise<IPlayer | null> => {
+  const result = await Player.findByIdAndDelete(id);
+  return result;
+};
+
 export const PlayerService = {
   createPlayer,
   getAllPlayers,
+  getSinglePlayer,
+  updatePlayer,
+  deletePlayer,
 };

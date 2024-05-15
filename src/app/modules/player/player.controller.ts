@@ -35,7 +35,50 @@ const getAllPlayers = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getSinglePlayer = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const result = await PlayerService.getSinglePlayer(id);
+
+  sendResponse<IPlayer>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Single player retrieved successfully !',
+
+    data: result,
+  });
+});
+
+const updatePlayer = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const payload = req.body;
+  const result = await PlayerService.updatePlayer(id, payload);
+
+  sendResponse<IPlayer>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Player updated successfully.',
+
+    data: result,
+  });
+});
+
+const deletePlayer = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const result = await PlayerService.deletePlayer(id);
+
+  sendResponse<IPlayer>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Player deleted successfully.',
+
+    data: result,
+  });
+});
+
 export const PlayerController = {
   createPlayer,
   getAllPlayers,
+  getSinglePlayer,
+  updatePlayer,
+  deletePlayer,
 };
