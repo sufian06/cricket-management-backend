@@ -35,12 +35,12 @@ const playerSchema = new Schema<IPlayer>(
     bowlingArm: {
       type: String,
       enum: bowlingArm,
-      default: 'Right-arm',
+      default: 'right-arm',
     },
     bowlingStyle: {
       type: String,
       enum: bowlingStyle,
-      default: 'Fast',
+      default: 'fast',
     },
     isCaptain: {
       type: Boolean,

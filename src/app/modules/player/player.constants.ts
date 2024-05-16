@@ -1,12 +1,12 @@
-export const role = ['Batsman', 'Bowler', 'All-rounder'];
-export const battingStyle = ['Right-handed', 'Left-handed'];
-export const bowlingArm = ['Right-arm', 'Left-arm'];
+export const role = ['batsman', 'bowler', 'all-rounder'];
+export const battingStyle = ['right-handed', 'left-handed'];
+export const bowlingArm = ['right-arm', 'left-arm'];
 export const bowlingStyle = [
-  'Fast',
-  'Medium',
-  'Off-spin',
-  'Leg-spin',
-  'Chainaman',
+  'fast',
+  'medium',
+  'off-spin',
+  'leg-spin',
+  'chainaman',
 ];
 
 export const playerSearchableFields = [
