@@ -94,10 +94,62 @@ const deletePlayer = async (id: string): Promise<IPlayer | null> => {
   return result;
 };
 
+const addMatchData = async (id: string, payload: Partial<IPlayer>) => {
+  const {
+    runs,
+    // notOut,
+    // playedBalls,
+    // highestScore,
+    // average,
+    // stikerate,
+    // fifty,
+    // thirty,
+    // sixes,
+    // fours,
+    // overs,
+    // balls,
+    // wickets,
+    // givenRuns,
+    // economy,
+  } = payload;
+
+  const isPlayerExist = await Player.findOne({ _id: id });
+  if (!isPlayerExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Player doest not exist');
+  }
+
+  const newHighestScore =
+    runs && runs > isPlayerExist.highestScore
+      ? runs
+      : isPlayerExist.highestScore;
+
+  const updatedMath = await Player.findByIdAndUpdate(
+    id,
+    {
+      $set: { highestScore: newHighestScore },
+      $inc: {
+        matches: 1,
+        ininges: 1,
+        runs: runs ?? 0,
+        playedBalls: payload.playedBalls ?? 0,
+        sixes: payload.sixes ?? 0,
+        fours: payload.fours ?? 0,
+        balls: payload.balls ?? 0,
+        wickets: payload.wickets ?? 0,
+        givenRuns: payload.givenRuns ?? 0,
+      },
+    },
+    { new: true },
+  );
+
+  return updatedMath;
+};
+
 export const PlayerService = {
   createPlayer,
   getAllPlayers,
   getSinglePlayer,
   updatePlayer,
   deletePlayer,
+  addMatchData,
 };

@@ -9,6 +9,7 @@ router.get('/:id', PlayerController.getSinglePlayer);
 router.get('/', PlayerController.getAllPlayers);
 
 router.patch('/:id', PlayerController.updatePlayer);
+router.post('/:id/add-match', PlayerController.addMatchData);
 
 router.delete('/:id', PlayerController.deletePlayer);
 

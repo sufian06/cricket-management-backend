@@ -64,6 +64,7 @@ const updatePlayer = catchAsync(async (req: Request, res: Response) => {
 
 const deletePlayer = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
+
   const result = await PlayerService.deletePlayer(id);
 
   sendResponse<IPlayer>(res, {
@@ -75,10 +76,25 @@ const deletePlayer = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const addMatchData = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const payload = req.body;
+  const result = await PlayerService.addMatchData(id, payload);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Player match added successfully.',
+
+    data: result,
+  });
+});
+
 export const PlayerController = {
   createPlayer,
   getAllPlayers,
   getSinglePlayer,
   updatePlayer,
   deletePlayer,
+  addMatchData,
 };
